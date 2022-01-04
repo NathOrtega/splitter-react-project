@@ -1,6 +1,18 @@
 import React from "react";
 
 export default class Input extends React.Component {
+  state = {
+    value: "",
+  }
+
+  handleOnChange = (e) => {
+    this.setState({
+      value: Number(e.target.value)
+    }, () => {
+      this.props.onChange(this.state.value)
+    })
+  }
+
   render() {
     const { label, placeholder, icon: Icon } = this.props
     return (
@@ -15,11 +27,11 @@ export default class Input extends React.Component {
                 <label htmlFor={label}>
                   <Icon className="inputIcon" />
                 </label>
-                  <input type="number" id={label} placeholder={placeholder} />
+                  <input value={this.state.value} onChange={this.handleOnChange} type="number" id={label} placeholder={placeholder} />
               </div>
             </div>
           :
-          <input type="number" placeholder={placeholder} className="smallInput" />
+          <input value={this.state.value} onChange={this.handleOnChange} type="number" placeholder={placeholder} className="smallInput" />
         }
       </React.Fragment>
     )

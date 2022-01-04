@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 
 export default class Input extends React.Component {
   handleOnChange = (e) => {
@@ -29,4 +30,9 @@ export default class Input extends React.Component {
       </React.Fragment>
     )
   }
+}
+
+Input.defaultProps = {
+  value: "",
+  placeholder: "",
 }

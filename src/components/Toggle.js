@@ -7,8 +7,7 @@ const activeStyle = {
 
 export default class Toggle extends React.Component {
   handleOnClick = () => {
-    const id = this.props.id
-    this.props.onClick(id)
+    this.props.onClick(this.props.id)
   }
 
   render() {

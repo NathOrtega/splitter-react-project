@@ -41,9 +41,7 @@ export default class TipSelector extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <p className="label">
-          {this.props.title}
-        </p>
+        {this.props.title && <p className="label">{this.props.title}</p>}
         <div className="togglesContainer">
           <Toggle id={5} label="5%" onClick={this.handleOnClick} isSelected={this.isSelected(5)} />
           <Toggle id={10} label="10%" onClick={this.handleOnClick} isSelected={this.isSelected(10)} />

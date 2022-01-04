@@ -44,6 +44,10 @@ input::placeholder {
   border-radius: 5px;
 }
 
+.input:focus-within {
+  border: 2px solid var(--light400);
+}
+
 .inputContainer {
   width: 100%;
 }

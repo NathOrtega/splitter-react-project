@@ -51,6 +51,8 @@ input::placeholder {
 .label {
   font-size: 16px;
   color: var(--dark100);
+  display: flex;
+  justify-content: space-between;
 }
 
 .inputIcon {
@@ -92,6 +94,10 @@ input::placeholder {
   padding: 0 17px;
   color: var(--dark300);
   background-color: var(--light100);
+}
+
+.smallInput:focus-within {
+  border: 2px solid var(--light400);
 }
 
 .resultsContainer {
@@ -163,6 +169,10 @@ input::placeholder {
 
 .resetButton:hover {
   background-color: #9FE8DF;
+}
+
+.warning {
+  color: #E17457;
 }
 
 @media screen and (min-width:768px){

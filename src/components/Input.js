@@ -1,16 +1,8 @@
 import React from "react";
 
 export default class Input extends React.Component {
-  state = {
-    value: "",
-  }
-
   handleOnChange = (e) => {
-    this.setState({
-      value: Number(e.target.value)
-    }, () => {
-      this.props.onChange(this.state.value)
-    })
+    this.props.onChange(e.target.value)
   }
 
   render() {
@@ -22,16 +14,17 @@ export default class Input extends React.Component {
             <div className="inputContainer">
               <label htmlFor={label} className="label">
                 {label}
+                {this.props.value === 0 && <span className="warning">Can't be zero</span>}
               </label>
-              <div className="input">
+              <div className="input" style={this.props.value === 0 ? {border: "2px solid #E17457"} : null}>
                 <label htmlFor={label}>
                   <Icon className="inputIcon" />
                 </label>
-                  <input value={this.state.value} onChange={this.handleOnChange} type="number" id={label} placeholder={placeholder} />
+                  <input value={this.props.value} onChange={this.handleOnChange} type="number" id={label} placeholder={placeholder} />
               </div>
             </div>
           :
-          <input value={this.state.value} onChange={this.handleOnChange} type="number" placeholder={placeholder} className="smallInput" />
+          <input value={this.props.value} onChange={this.handleOnChange} type="number" placeholder={placeholder} className="smallInput" />
         }
       </React.Fragment>
     )

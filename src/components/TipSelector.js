@@ -5,18 +5,23 @@ import Input from "./Input";
 export default class TipSelector extends React.Component {
   state = {
     tip: 0,
+    customTip: "",
   }
 
   handleOnClick = (id) => {
-    this.state.tip === id 
-    ?
     this.setState({
-      tip: 0
-    }, () => {this.props.onChange(this.state.tip)})
-    :
-    this.setState({
-      tip: id
-    }, () => {this.props.onChange(this.state.tip)})
+      customTip: ""
+    }, () => {
+      this.state.tip === id 
+      ?
+      this.setState({
+        tip: 0
+      }, () => {this.props.onChange(this.state.tip)})
+      :
+      this.setState({
+        tip: id
+      }, () => {this.props.onChange(this.state.tip)})
+    })
   }
 
   isSelected = (id) => {
@@ -25,8 +30,12 @@ export default class TipSelector extends React.Component {
 
   handleOnChange = (value) => {
     this.setState({
-      tip: value
-    }, () => {this.props.onChange(this.state.tip)})
+      customTip: value
+    }, () => {
+      this.setState({
+        tip: this.state.customTip
+      }, () => {this.props.onChange(this.state.tip)})
+    })
   }
 
   render() {
@@ -41,7 +50,7 @@ export default class TipSelector extends React.Component {
           <Toggle id={15} label="15%" onClick={this.handleOnClick} isSelected={this.isSelected(15)} />
           <Toggle id={25} label="25%" onClick={this.handleOnClick} isSelected={this.isSelected(25)} />
           <Toggle id={50} label="50%" onClick={this.handleOnClick} isSelected={this.isSelected(50)} />
-          <Input placeholder="Custom" onChange={this.handleOnChange}/>
+          <Input  value={this.state.customTip} placeholder="Custom" onChange={this.handleOnChange}/>
         </div>
       </React.Fragment>
     )

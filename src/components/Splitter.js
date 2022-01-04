@@ -2,8 +2,8 @@ import React from "react";
 import Input from "./Input";
 import { FaUser, FaDollarSign } from "react-icons/fa"
 import TipSelector from "./TipSelector";
-import Results from "./Results";
 import CopyRight from "./CopyRight";
+import ValuesCalculator from "./ValuesCalculator";
 
 export default class Splitter extends React.Component {
   state = {
@@ -39,7 +39,7 @@ export default class Splitter extends React.Component {
             <TipSelector title="Select Tip %" onChange={this.handleTipSelectorOnChange} />
             <Input value={this.state.numberOfPeople} label={"Number of People"} placeholder={0} icon={FaDollarSign} onChange={this.handleNumberOfPeopleOnChange} />
           </div>
-          <Results billTotal={this.state.billTotal} tipPercentage={this.state.tipPercentage} numberOfPeople={this.state.numberOfPeople}/>
+          <ValuesCalculator billTotal={this.state.billTotal} tipPercentage={this.state.tipPercentage} numberOfPeople={this.state.numberOfPeople}/>
         </div>
         <CopyRight />
       </div>

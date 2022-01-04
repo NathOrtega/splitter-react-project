@@ -1,38 +1,225 @@
 .App {
-  text-align: center;
+  width: 100%;
+  height: 100%;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.title {
+  width: fit-content;
+  margin: 20px auto 10px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.splitterContainer {
+  width: 83%;
+  height: 650px;
+  padding: 32px;
+  margin: 0 auto;
+  overflow: hidden;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  background-color: var(--light);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+input {
+  width: 90%;
+  border: none;
+  font-size: 24px;
+  text-align: right;
+  color: var(--dark300);
+  background-color: var(--light100);
+  outline: none;
+}
+
+input::placeholder {
+  text-align: right;
+}
+
+.input {
+  height: 36px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 16px;
+  margin: 6px 0 20px;
+  background-color: var(--light100);
+  border-radius: 5px;
+}
+
+.inputContainer {
+  width: 100%;
+}
+
+.label {
+  font-size: 16px;
+  color: var(--dark100);
+}
+
+.inputIcon {
+  color: var(--light300);
+}
+
+.togglesContainer {
+  height: 176px;
+  margin: 6px 0 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.toggle {
+  width: 146px;
+  height: 48px;
+  border: none;
+  border-radius: 5px;
+  font-size: 24px;
+  color: var(--light);
+  background-color: var(--dark300);
+  cursor: pointer;
+}
+
+.toggle:hover {
+  color: var(--dark300);
+  background-color: #9FE8DF;
+}
+
+.smallInput {
+  width: 110px;
+  height: 48px;
+  outline: none;
+  border-radius: 5px;
+  font-size: 24px;
+  padding: 0 17px;
+  color: var(--dark300);
+  background-color: var(--light100);
+}
+
+.resultsContainer {
+  height: 175px;
+  background-color: var(--dark300);
+  border-radius: 15px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+}
+
+.copyright {
+  font-size: 10px;
+  text-align: center;
+  margin-top: 15px;
+}
+
+.copyrightLink {
+  text-decoration: none;
+  color: var(--dark300);
+  cursor: pointer;
+}
+
+.valuesCalculator {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  margin-bottom: 10px;
 }
 
-.App-link {
-  color: #61dafb;
+.valueLabel {
+  width: 50%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.concept {
+  font-size: 16px;
+  color: var(--light);
+}
+
+.subject {
+  font-size: 13px;
+  color: #7F9D9F;
+}
+
+.value {
+  font-size: 32px;
+  color: var(--light400);
+  margin: 0;
+}
+
+.resetButton {
+  width: 100%;
+  height: 48px;
+  background-color: var(--light400);
+  color: var(--dark300);
+  font-size: 20px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.resetButton:hover {
+  background-color: #9FE8DF;
+}
+
+@media screen and (min-width:768px){
+  .splitterContainer {
+    border-radius: 25px;
   }
-  to {
-    transform: rotate(360deg);
+
+  .togglesContainer {
+    width: 70%;
+    margin: 6px auto 20px;
+  }
+}
+
+@media screen and (min-width:1024px) {
+  .title {
+    margin: 40px auto 40px;
+  }
+
+  .splitterContainer {
+    width: 920px;
+    height: 450px;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .splitter {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .requestedInfo {
+    width: 400px;
+    height: fit-content;
+  }
+
+  .togglesContainer {
+    width: 100%;
+    justify-content: space-around;
+  }
+
+  .resultsContainer {
+    width: 400px;
+    height: 75%;
+    padding: 40px;
+    justify-content: flex-start;
+  }
+
+  .valuesCalculator {
+    margin-bottom: 40px;
+  }
+
+  .resetButton {
+    margin-top: auto;
   }
 }

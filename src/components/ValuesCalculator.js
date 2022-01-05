@@ -1,38 +1,39 @@
 import React from "react";
-import Results from "./Results";
+import ResultRow from "./ResultRow";
 
 export default class ValuesCalculator extends React.Component {
   getTipAmountPerPerson = () => {
-    if (this.props.billTotal && this.props.numberOfPeople){
-      const percentage = (this.props.tipPercentage * this.props.billTotal) / 100
-      return percentage/this.props.numberOfPeople
+    const { billTotal, tipPercentage, numberOfPeople } = this.props
+
+    if (billTotal && numberOfPeople){
+      const percentage = (tipPercentage * billTotal) / 100
+      return percentage/numberOfPeople
     } 
     return 0
   }
 
   getTotalPerPerson = () => {
-    if (this.props.billTotal && this.props.numberOfPeople){
-      return (this.props.billTotal / this.props.numberOfPeople) + this.getTipAmountPerPerson()
+    const { billTotal, numberOfPeople } = this.props
+
+    if (billTotal && numberOfPeople){
+      return (billTotal / numberOfPeople) + this.getTipAmountPerPerson()
     }
     return 0
   }
 
   render() {
+    const { billTotal, numberOfPeople } = this.props
+    const areValuesFilled = billTotal && numberOfPeople
+
     return (
       <React.Fragment>
         <div className="resultsContainer">
-          <Results concept="Tip Amount" subject="/ person" value={this.getTipAmountPerPerson().toFixed(2)} />
-          <Results concept="Total" subject="/ person" value={this.getTotalPerPerson().toFixed(2)} />
+          <ResultRow concept="Tip Amount" subject="/ person" value={this.getTipAmountPerPerson().toFixed(2)} />
+          <ResultRow concept="Total" subject="/ person" value={this.getTotalPerPerson().toFixed(2)} />
           < button 
             type="reset" className="resetButton" onClick={() => window.location.reload()} 
-            disabled={(this.props.billTotal && this.props.tipPercentage && this.props.numberOfPeople) ? false : true}
-            style={
-              (this.props.billTotal && this.props.tipPercentage && this.props.numberOfPeople) 
-              ? 
-              null
-              :
-              {backgroundColor: "#0D686D", color: "#00474B"}
-            }
+            disabled={areValuesFilled ? false : true}
+            style={ areValuesFilled ? null : {backgroundColor: "#0D686D", color: "#00474B"}}
           >
             RESET
           </button>

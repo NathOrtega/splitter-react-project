@@ -1,16 +1,18 @@
 import React from "react";
 
-export default class Results extends React.Component {
+export default class ResultRow extends React.Component {
   render() {
+    const { concept, subject, value } = this.props
+
     return (
       <React.Fragment>
         <div className="valuesCalculator">
           <div className="valueLabel">
-            <p className="concept">{this.props.concept}</p>
-            <p className="subject">{this.props.subject}</p>
+            <p className="concept">{concept}</p>
+            <p className="subject">{subject}</p>
           </div>
           <span className="value">
-            {`$${this.props.value}`}
+            {`$${value}`}
           </span>
         </div>
       </React.Fragment>
@@ -18,7 +20,7 @@ export default class Results extends React.Component {
   }
 }
 
-Results.defaultProps = {
+ResultRow.defaultProps = {
   concept: "Amount",
   subject: "/ Person",
   value: 0,

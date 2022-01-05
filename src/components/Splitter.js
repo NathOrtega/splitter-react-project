@@ -14,32 +14,34 @@ export default class Splitter extends React.Component {
 
   handleBillOnChange = (value) => {
     this.setState({
-      billTotal: Number(value)
+      billTotal: value
     })
   }
 
   handleNumberOfPeopleOnChange = (value) => {
     this.setState({
-      numberOfPeople: Number(value)
+      numberOfPeople: value
     })
   }
 
   handleTipSelectorOnChange = (value) => {
     this.setState({
-      tipPercentage: Number(value)
+      tipPercentage: value
     })
   }
 
   render() {
+    const { billTotal, tipPercentage, numberOfPeople } = this.state
+
     return (
       <div className="splitterContainer">
         <div className="splitter">
           <div className="requestedInfo">
-            <Input value={this.state.billTotal} label={"Bill"} placeholder={0} icon={FaUser} onChange={this.handleBillOnChange} />
+            <Input value={billTotal} label={"Bill"} placeholder={0} icon={FaUser} onChange={this.handleBillOnChange} />
             <TipSelector title="Select Tip %" onChange={this.handleTipSelectorOnChange} />
-            <Input value={this.state.numberOfPeople} label={"Number of People"} placeholder={0} icon={FaDollarSign} onChange={this.handleNumberOfPeopleOnChange} />
+            <Input value={numberOfPeople} label={"Number of People"} placeholder={0} icon={FaDollarSign} onChange={this.handleNumberOfPeopleOnChange} />
           </div>
-          <ValuesCalculator billTotal={this.state.billTotal} tipPercentage={this.state.tipPercentage} numberOfPeople={this.state.numberOfPeople}/>
+          <ValuesCalculator billTotal={Number(billTotal)} tipPercentage={Number(tipPercentage)} numberOfPeople={Number(numberOfPeople)}/>
         </div>
         <CopyRight />
       </div>

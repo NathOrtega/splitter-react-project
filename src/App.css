@@ -38,7 +38,7 @@ input::placeholder {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 6px 16px;
+  padding: 6px 0 6px 16px;
   margin: 6px 0 20px;
   background-color: var(--light100);
   border-radius: 5px;
@@ -91,12 +91,12 @@ input::placeholder {
 }
 
 .smallInput {
-  width: 108px;
+  width: 142px;
   height: 44px;
   outline: none;
   border-radius: 5px;
   font-size: 24px;
-  padding: 0 17px;
+  padding: 0;
   color: var(--dark300);
   background-color: var(--light100);
   border: 2px solid transparent;

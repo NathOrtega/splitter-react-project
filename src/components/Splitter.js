@@ -37,9 +37,17 @@ export default class Splitter extends React.Component {
       <div className="splitterContainer">
         <div className="splitter">
           <div className="requestedInfo">
-            <Input value={billTotal} label={"Bill"} placeholder={0} icon={FaUser} onChange={this.handleBillOnChange} />
+            <Input 
+              value={billTotal} label={"Bill"} placeholder={0} icon={FaUser} 
+              onChange={this.handleBillOnChange} errorMessage="Can't be zero"
+              isValid={billTotal !== "0"}
+            />
             <TipSelector title="Select Tip %" onChange={this.handleTipSelectorOnChange} />
-            <Input value={numberOfPeople} label={"Number of People"} placeholder={0} icon={FaDollarSign} onChange={this.handleNumberOfPeopleOnChange} />
+            <Input 
+              value={numberOfPeople} label={"Number of People"} placeholder={0} icon={FaDollarSign} 
+              onChange={this.handleNumberOfPeopleOnChange} errorMessage="Can't be zero"
+              isValid={numberOfPeople !== "0"}
+            />
           </div>
           <ValuesCalculator billTotal={Number(billTotal)} tipPercentage={Number(tipPercentage)} numberOfPeople={Number(numberOfPeople)}/>
         </div>

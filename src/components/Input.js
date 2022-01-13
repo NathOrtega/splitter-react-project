@@ -7,26 +7,27 @@ export default class Input extends React.Component {
   }
 
   render() {
-    const { label, placeholder, icon: Icon, value } = this.props
+    const { label, placeholder, icon: Icon, value, errorMessage, isValid } = this.props
+    const isDecorated = label || Icon
+
     return (
       <React.Fragment>
-        { (label && Icon) 
-          ?
-            <div className="inputContainer">
-              <label htmlFor={label} className="label">
-                {label}
-                {value === "0" && <span className="warning">Can't be zero</span>}
+        <div className={isDecorated ? "inputContainer" : "smallInput"}>
+          { label && 
+            <label htmlFor={label} className="label">
+              {label}
+              {!isValid && <span className="warning">{errorMessage}</span>}
+            </label>
+          }
+          <div className={isDecorated ? "input" : null} style={!isValid ? {border: "2px solid #E17457"} : null}>
+            { Icon && 
+              <label htmlFor={label}>
+                <Icon className="inputIcon" />
               </label>
-              <div className="input" style={value === 0 ? {border: "2px solid #E17457"} : null}>
-                <label htmlFor={label}>
-                  <Icon className="inputIcon" />
-                </label>
-                  <input value={value} onChange={this.handleOnChange} type="number" id={label} placeholder={placeholder} />
-              </div>
-            </div>
-          :
-          <input value={value} onChange={this.handleOnChange} type="number" placeholder={placeholder} className="smallInput" />
-        }
+            }
+              <input value={value} onChange={this.handleOnChange} id={label} placeholder={placeholder} type="number"/>
+          </div>
+        </div>
       </React.Fragment>
     )
   }

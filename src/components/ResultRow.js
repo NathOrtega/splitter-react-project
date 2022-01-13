@@ -19,9 +19,3 @@ export default class ResultRow extends React.Component {
     )
   }
 }
-
-ResultRow.defaultProps = {
-  concept: "Amount",
-  subject: "/ Person",
-  value: 0,
-}

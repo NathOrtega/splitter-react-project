@@ -32,13 +32,12 @@ export default class TipSelector extends React.Component {
       <React.Fragment>
         {this.props.title && <p className="label">{this.props.title}</p>}
         <div className="togglesContainer">
-          {togglesInfo.map(toggle => {
-              const { label, id } = toggle
+          {togglesInfo.map(({ label, id }) => {
               return (
                 <Toggle id={id} label={label} onClick={this.handleOnClick} isSelected={this.isSelected(id)} />
               )
             })}
-          <Input  value={this.state.customTip} placeholder="Custom" onChange={this.handleOnChange}/>
+          <Input  value={this.state.customTip} placeholder="Custom" onChange={this.handleOnChange} isValid={true}/>
         </div>
       </React.Fragment>
     )

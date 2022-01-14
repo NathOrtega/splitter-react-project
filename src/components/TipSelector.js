@@ -3,17 +3,9 @@ import Toggle from "./Toggle";
 import Input from "./Input";
 import { togglesInfo } from "../constants";
 
-export default function TipSelector({ title, onChange }) {
-  const [ tip, setTip ] = useState(0);
-  const [ customTip, setCustomTip ] = useState("");
-
-  useEffect(() => {
-    onChange(tip)
-  }, [tip])
-
+export default function TipSelector({ title, onTipChange, onCustomTipChange, tip, customTip }) {
   const handleOnClick = (id) => {
-    setTip((prevTip) => prevTip === id ? 0 : id)
-    setCustomTip("")
+    onTipChange(id)
   }
 
   const isSelected = (id) => {
@@ -21,8 +13,7 @@ export default function TipSelector({ title, onChange }) {
   }
 
   const handleOnChange = (value) => {
-    setTip(value)
-    setCustomTip(value)
+    onCustomTipChange(value)
   }
 
   return (
@@ -31,7 +22,7 @@ export default function TipSelector({ title, onChange }) {
       <div className="togglesContainer">
         {togglesInfo.map(({ label, id }) => {
             return (
-              <Toggle id={id} label={label} onClick={handleOnClick} isSelected={isSelected(id)} />
+              <Toggle key={id} id={id} label={label} onClick={handleOnClick} isSelected={isSelected(id)} />
             )
           })}
         <Input  value={customTip} placeholder="Custom" onChange={handleOnChange} isValid={true}/>

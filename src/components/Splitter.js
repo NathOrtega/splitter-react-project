@@ -8,6 +8,7 @@ import ValuesCalculator from "./ValuesCalculator";
 export default function Splitter() {
   const [ billTotal, setBillTotal ] = useState("");
   const [ tipPercentage, setTipPercentage ] = useState("");
+  const [ customTipPercentage, setCustomTipPercentage ] = useState("");
   const [ numberOfPeople, setNumberOfPeople ] = useState("");
 
   const handleBillOnChange = (value) => {
@@ -18,13 +19,20 @@ export default function Splitter() {
     setNumberOfPeople(value)
   }
 
-  const handleTipSelectorOnChange = (value) => {
-    setTipPercentage(value)
+  const handleTipOnChange = (value) => {
+    setTipPercentage((prevTip) => prevTip === value ? 0 : value)
+    setCustomTipPercentage("")
+  }
+
+  const handleCustomTipOnChange = (value) => {
+    setTipPercentage(value);
+    setCustomTipPercentage(value)
   }
 
   const handleOnReset = () => {
     setBillTotal("")
     setTipPercentage("")
+    setCustomTipPercentage("")
     setNumberOfPeople("")
   }
 
@@ -37,7 +45,10 @@ export default function Splitter() {
             onChange={handleBillOnChange} errorMessage="Can't be zero"
             isValid={billTotal !== "0"}
           />
-          <TipSelector title="Select Tip %" onChange={handleTipSelectorOnChange} />
+          <TipSelector 
+            title="Select Tip %" onTipChange={handleTipOnChange} onCustomTipChange={handleCustomTipOnChange}
+            tip={tipPercentage} customTip={customTipPercentage}
+          />
           <Input 
             value={numberOfPeople} label={"Number of People"} placeholder={0} icon={FaDollarSign} 
             onChange={handleNumberOfPeopleOnChange} errorMessage="Can't be zero"

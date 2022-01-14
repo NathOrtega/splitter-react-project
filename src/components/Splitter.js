@@ -22,6 +22,12 @@ export default function Splitter() {
     setTipPercentage(value)
   }
 
+  const handleOnReset = () => {
+    setBillTotal("")
+    setTipPercentage("")
+    setNumberOfPeople("")
+  }
+
   return (
     <div className="splitterContainer">
       <div className="splitter">
@@ -38,7 +44,10 @@ export default function Splitter() {
             isValid={numberOfPeople !== "0"}
           />
         </div>
-        <ValuesCalculator billTotal={Number(billTotal)} tipPercentage={Number(tipPercentage)} numberOfPeople={Number(numberOfPeople)}/>
+        <ValuesCalculator 
+          billTotal={Number(billTotal)} tipPercentage={Number(tipPercentage)} 
+          numberOfPeople={Number(numberOfPeople)} onReset={handleOnReset}
+        />
       </div>
       <CopyRight />
     </div>

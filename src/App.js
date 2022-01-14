@@ -3,7 +3,7 @@ import React from 'react';
 import Header from './components/Header';
 import Splitter from './components/Splitter';
 
-function App() {
+export default function App() {
   return (
     <React.Fragment>
       <Header title={<img src="SPLITTER.svg" alt="SPLITTER"/>} />
@@ -11,5 +11,3 @@ function App() {
     </React.Fragment>
   );
 }
-
-export default App;

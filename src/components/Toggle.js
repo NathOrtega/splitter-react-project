@@ -5,20 +5,14 @@ const activeStyle = {
   backgroundColor: "var(--light400)",
 }
 
-export default class Toggle extends React.Component {
-  handleOnClick = () => {
-    this.props.onClick(this.props.id)
+export default function Toggle({ id, label, isSelected, onClick }) {
+  const handleOnClick = () => {
+    onClick(id)
   }
 
-  render() {
-    const { label, isSelected } = this.props
-
-    return(
-      <React.Fragment>
-        <button className="toggle" onClick={this.handleOnClick} style={isSelected ? activeStyle : null}>
-          {label}
-        </button>
-      </React.Fragment>
-    )
-  }
+  return(
+    <button className="toggle" onClick={handleOnClick} style={isSelected ? activeStyle : null}>
+      {label}
+    </button>
+  )
 }

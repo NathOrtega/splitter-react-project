@@ -1,45 +1,41 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Toggle from "./Toggle";
 import Input from "./Input";
 import { togglesInfo } from "../constants";
 
-export default class TipSelector extends React.Component {
-  state = {
-    tip: 0,
-    customTip: "",
+export default function TipSelector({ title, onChange }) {
+  const [ tip, setTip ] = useState(0);
+  const [ customTip, setCustomTip ] = useState("");
+
+  useEffect(() => {
+    onChange(tip)
+  }, [tip])
+
+  const handleOnClick = (id) => {
+    setTip((prevTip) => prevTip === id ? 0 : id)
+    setCustomTip("")
   }
 
-  handleOnClick = (id) => {
-    this.setState({
-      tip: this.state.tip === id ? 0 : id,
-      customTip: ""
-    },() => {this.props.onChange(this.state.tip)})
+  const isSelected = (id) => {
+    return tip === id
   }
 
-  isSelected = (id) => {
-    return this.state.tip === id
+  const handleOnChange = (value) => {
+    setTip(value)
+    setCustomTip(value)
   }
 
-  handleOnChange = (value) => {
-    this.setState({
-      tip: value,
-      customTip: value
-    }, () => {this.props.onChange(this.state.tip)})
-  }
-
-  render() {
-    return (
-      <React.Fragment>
-        {this.props.title && <p className="label">{this.props.title}</p>}
-        <div className="togglesContainer">
-          {togglesInfo.map(({ label, id }) => {
-              return (
-                <Toggle id={id} label={label} onClick={this.handleOnClick} isSelected={this.isSelected(id)} />
-              )
-            })}
-          <Input  value={this.state.customTip} placeholder="Custom" onChange={this.handleOnChange} isValid={true}/>
-        </div>
-      </React.Fragment>
-    )
-  }
+  return (
+    <React.Fragment>
+      {title && <p className="label">{title}</p>}
+      <div className="togglesContainer">
+        {togglesInfo.map(({ label, id }) => {
+            return (
+              <Toggle id={id} label={label} onClick={handleOnClick} isSelected={isSelected(id)} />
+            )
+          })}
+        <Input  value={customTip} placeholder="Custom" onChange={handleOnChange} isValid={true}/>
+      </div>
+    </React.Fragment>
+  )
 }
